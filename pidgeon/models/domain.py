@@ -18,6 +18,7 @@ class Domain:
         catch_all_enabled (bool):
         inbound_enabled (bool):
         identity_count (int):
+        pod_id (None | str): The pod it sends from: one of your customers, or the default pod.
         verified_at (None | str):
         created_at (str): ISO-8601, UTC.
     """
@@ -28,6 +29,7 @@ class Domain:
     catch_all_enabled: bool
     inbound_enabled: bool
     identity_count: int
+    pod_id: None | str
     verified_at: None | str
     created_at: str
 
@@ -44,6 +46,9 @@ class Domain:
 
         identity_count = self.identity_count
 
+        pod_id: None | str
+        pod_id = self.pod_id
+
         verified_at: None | str
         verified_at = self.verified_at
 
@@ -59,6 +64,7 @@ class Domain:
                 "catch_all_enabled": catch_all_enabled,
                 "inbound_enabled": inbound_enabled,
                 "identity_count": identity_count,
+                "pod_id": pod_id,
                 "verified_at": verified_at,
                 "created_at": created_at,
             }
@@ -81,6 +87,13 @@ class Domain:
 
         identity_count = d.pop("identity_count")
 
+        def _parse_pod_id(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        pod_id = _parse_pod_id(d.pop("pod_id"))
+
         def _parse_verified_at(data: object) -> None | str:
             if data is None:
                 return data
@@ -97,6 +110,7 @@ class Domain:
             catch_all_enabled=catch_all_enabled,
             inbound_enabled=inbound_enabled,
             identity_count=identity_count,
+            pod_id=pod_id,
             verified_at=verified_at,
             created_at=created_at,
         )

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Pidgeon API",
-    "version": "1.67.4",
+    "version": "1.68.0",
     "description": "An email inbox API for AI agents. Inboxes your code creates in one call, threads that carry state, and sending from a domain you own.\n\nEvery response is `{ data }`, a page is `{ data, has_more, next_cursor }`, and a failure is `{ error: { code, message } }`. There is no third envelope."
   },
   "servers": [
@@ -5833,6 +5833,13 @@
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
           },
+          "pod_id": {
+            "description": "The pod it sends from: one of your customers, or the default pod.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "verified_at": {
             "anyOf": [
               {
@@ -5856,6 +5863,7 @@
           "catch_all_enabled",
           "inbound_enabled",
           "identity_count",
+          "pod_id",
           "verified_at",
           "created_at"
         ],
@@ -5883,6 +5891,13 @@
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
+          },
+          "pod_id": {
+            "description": "The pod it sends from: one of your customers, or the default pod.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "verified_at": {
             "anyOf": [
@@ -6032,6 +6047,7 @@
           "catch_all_enabled",
           "inbound_enabled",
           "identity_count",
+          "pod_id",
           "verified_at",
           "created_at",
           "dns_records",
@@ -6061,6 +6077,13 @@
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
+          },
+          "pod_id": {
+            "description": "The pod it sends from: one of your customers, or the default pod.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "verified_at": {
             "anyOf": [
@@ -6250,6 +6273,7 @@
           "catch_all_enabled",
           "inbound_enabled",
           "identity_count",
+          "pod_id",
           "verified_at",
           "created_at",
           "dns_records",
@@ -21699,6 +21723,12 @@
                   },
                   "inbound_enabled": {
                     "type": "boolean"
+                  },
+                  "pod_id": {
+                    "description": "The pod this domain sends from, for one of your customers. Leave it out for the default pod; a pod key’s domain always goes in its own pod.",
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
                   }
                 },
                 "required": [
