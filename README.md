@@ -1,3 +1,5 @@
+> **Archived.** This is the first Pidgeon's client. The current one is [pidgeon-ai/pidgeon-python](https://github.com/pidgeon-ai/pidgeon-python): email inboxes for AI agents, https://pidgeon.ai
+
 # pidgeon
 
 [![M8ven Score](https://m8ven.ai/badge/mcp/pidgeon-ai-pidgeon-python-14x4fi?v=7839ce033bbaf81a694644e5d0dce78c)](https://m8ven.ai/mcp/pidgeon-ai-pidgeon-python-14x4fi?s=readme)
